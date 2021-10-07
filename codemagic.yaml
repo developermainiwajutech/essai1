@@ -14,10 +14,19 @@ workflows:
         - other
       xcode: 12.4
       node: 12
-      npm: 6        
+      npm: 6 
+       
     cache:
       cache_paths:
         - $FCI_BUILD_DIR/node_modules
+
+    triggering:
+            events:
+                - push
+            branch_patterns:
+                - pattern: develop
+                  include: true
+                  source: true
     scripts:
       - name: Install dependencies
         script: |
