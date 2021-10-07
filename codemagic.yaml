@@ -1,7 +1,9 @@
 workflows:
    android-workflow:
     name: Android workflow
-    environment:
+XCODE_PROJECT: "ionic"
+XCODE_SCHEME: "ionic"
+environment:
       groups:
         # Add the group environment variables in Codemagic UI (either in Application/Team variables) - https://docs.codemagic.io/variables/environment-variable-groups/
         - keystore_credentials # <-- (Includes KEYSTORE, KEYSTORE_PASSWORD, KEY_ALIAS_PASSWORD, KEY_ALIAS, KEYSTORE_PATH)
@@ -16,18 +18,20 @@ workflows:
       node: 12
       npm: 6 
        
-    cache:
+cache:
       cache_paths:
         - $FCI_BUILD_DIR/node_modules
 
-    triggering:
+triggering:
             events:
                 - push
             branch_patterns:
                 - pattern: main
                   include: true
                   source: true
-    scripts:
+
+
+scripts:
       - name: Install dependencies
         script: |
           npm install
@@ -50,10 +54,10 @@ workflows:
           UNSIGNED_APK_PATH=$(find platforms/android/app/build/outputs -name "*.apk" | head -1)
           jarsigner -sigalg SHA1withRSA -digestalg SHA1 -keystore "${KEYSTORE_PATH}" -storepass "${KEYSTORE_PASSWORD}" -keypass "${KEY_ALIAS_PASSWORD}" "${UNSIGNED_APK_PATH}" "${KEY_ALIAS}"
           mv $UNSIGNED_APK_PATH $(echo $UNSIGNED_APK_PATH | sed 's/-unsigned//')
-    artifacts:
+artifacts:
       - platforms/android/app/build/outputs/**/*.apk
       - platforms/android/app/build/outputs/**/mapping.txt
-    publishing:
+publishing:
         # See the following link for details about email publishing - https://docs.codemagic.io/publishing-yaml/distribution/#email
         email:
             recipients:
