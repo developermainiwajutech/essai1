@@ -32,6 +32,7 @@ triggering:
 
 
 scripts:
+      
       - name: Install dependencies
         script: |
           npm install
@@ -39,7 +40,8 @@ scripts:
           cvm install 9.0.0
           cvm use 9.0.0
           npm install -g ionic
-          ionic info        
+          ionic info  
+            
       - name: Add Android platform
         script: |
           set -x
@@ -62,7 +64,8 @@ publishing:
         email:
             recipients:
                 - mouftaouhanane@gmail.com
-                - developer3iwaju@gmail.com
+                 - developer3iwaju@gmail.com
+                 -iwaju@office.com
             notify:
               success: true     # To not receive a notification when a build succeeds
               failure: false    # To not receive a notification when a build fails
