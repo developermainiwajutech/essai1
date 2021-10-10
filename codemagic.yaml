@@ -6,12 +6,12 @@ XCODE_SCHEME: "ionic"
 environment:
       groups:
         # Add the group environment variables in Codemagic UI (either in Application/Team variables) - https://docs.codemagic.io/variables/environment-variable-groups/
-        - keystore_credentials # <-- (Includes KEYSTORE, KEYSTORE_PASSWORD, KEY_ALIAS_PASSWORD, KEY_ALIAS, KEYSTORE_PATH)
-          # KEYSTORE <-- Put your keystore file here
-          # KEYSTORE_PASSWORD <-- Put your keystore password here
-          # KEY_ALIAS_PASSWORD <-- Put your keystore alias password here
-          # KEY_ALIAS <-- Put your keystore alias username here
-          # KEYSTORE_PATH: '/tmp/keystore.keystore'
+      #- keystore_credentials # <-- (Includes KEYSTORE, KEYSTORE_PASSWORD, KEY_ALIAS_PASSWORD, KEY_ALIAS, KEYSTORE_PATH)
+        #KEYSTORE :<-- Put your keystore file here
+     # KEYSTORE_PASSWORD  <-- Put your keystore password here
+     # KEY_ALIAS_PASSWORD <-- Put your keystore alias password here
+      #KEY_ALIAS <-- Put your keystore alias username here
+      # KEYSTORE_PATH  '/tmp/keystore.keystore'
         - google_play # <-- (Includes GCLOUD_SERVICE_ACCOUNT_CREDENTIALS - Put your google-services.json here)
         - other
       xcode: 12.4
@@ -63,9 +63,9 @@ publishing:
         # See the following link for details about email publishing - https://docs.codemagic.io/publishing-yaml/distribution/#email
         email:
             recipients:
-                - mouftaouhanane@gmail.com
+                
                  - developer3iwaju@gmail.com
-                 -iwaju@office.com
+                 
             notify:
               success: true     # To not receive a notification when a build succeeds
               failure: false    # To not receive a notification when a build fails
